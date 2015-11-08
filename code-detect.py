@@ -1,20 +1,25 @@
+#VIVEK AGARWAL
+#MNNIT ALLAHABAD
+#Computer Science and Engineering Department
+
+
 import ast
 import re
 import sys
 import os
 
-l1 = []
-l2 = []
-d = {}
+l1 = []														#l1 will store root to leaf  paths for complete code
+l2 = []														#l2 will store root to leaf paths for incomplete code
+d = {}														#store filenames of complete codes and matching percentage to incomplete code
 
-def prettyprint(node, no_of_space, p, i):
+def prettyprint(node, no_of_space, p, i):					#to create all root to leaf paths
     #print(" "*no_of_space,"Node: ", node)
     #if(no_of_space != 0):
     for f in ast.iter_fields(node):
     	#print(" "*no_of_space, f)
-    	if(f[0] != 'body'):
-    		p += f[0] + " "
-    		p += (type(f[1]).__name__ + " ")
+    	if(f[0] != 'body'):									#f is a tuple
+    		p += f[0] + " "									
+    		p += (type(f[1]).__name__ + " ")				#for storing node types, if node is 'op' (operator) then type.__name__ will give 'Add'
 
     for n in ast.iter_child_nodes(node):
         prettyprint(n, no_of_space+2, p, i)
