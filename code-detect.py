@@ -33,8 +33,8 @@ t = ast.parse(str)
 #print("Tree 1 : \n")
 prettyprint(t, 0, "",1)
 
-for i, w in enumerate(l1):
-	print(i,": ",w)
+#for i, w in enumerate(l1):
+#	print(i,": ",w)
 
 #print("Tree 1 : ")
 str = ""
@@ -47,8 +47,8 @@ prettyprint(t, 0, "",2)
 
 #print(str)
 print("Tree 2 : \n")
-for i, w in enumerate(l2):
-	print(i,": ",w)
+#for i, w in enumerate(l2):
+#	print(i,": ",w)
 
 
 match = 0
@@ -59,7 +59,7 @@ for w2 in l2:
 		w1.strip()
 		if(w2 in w1 and w2 != ' ') :
 			match += 1
-			l1.remove(w1)
+			#l1.remove(w1)
 			break
 
 print("Total paths in incomplete code : ", len(l2))
