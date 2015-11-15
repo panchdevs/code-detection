@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
-from ASTPath import ASTPath
-from CodePathsStore import CodePathsStore
+from .ASTPath import ASTPath
+from .CodePathsStore import CodePathsStore
 
 class CodeComparer:
 
@@ -13,6 +13,7 @@ class CodeComparer:
 
     matches = {}
     for treepath in paths:
+
       match_files = None
       for path_dic in self.code_paths_store.paths:
         if path_dic["path"].endswith(treepath):

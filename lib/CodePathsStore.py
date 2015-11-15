@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 from os import path, walk
-from ASTPath import ASTPath
+from .ASTPath import ASTPath
 
 class CodePathsStore:
 
