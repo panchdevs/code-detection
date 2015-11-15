@@ -12,12 +12,11 @@ class CodeDetectionCommand(sublime_plugin.TextCommand):
 
     matches = comparer.compare(code_body)
     match_list = []
-    for match in matches:
-      for filename, match_percentage in match.items():
-        match_list.append(filename + " {0:.2f}".format(match_percentage))
+    for filename, match_percentage in matches.items():
+      match_list.append(filename + " {0:.2f}".format(match_percentage))
     self.view.window().show_quick_panel(match_list, self.something)
 
 
-  def something(self):
+  def something(self, s):
     # added temporarily
-    return ""
+    return s

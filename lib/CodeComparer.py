@@ -29,9 +29,9 @@ class CodeComparer:
 
     number_of_paths = len(paths)
 
-    match_percentages = []
+    match_percentages = {}
     for filename, match_count in matches.items():
       match_percentage = (float(match_count) * 100) / number_of_paths
-      match_percentages.append({filename: match_percentage})
+      match_percentages[filename] = match_percentage
 
     return match_percentages
