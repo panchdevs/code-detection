@@ -43,7 +43,7 @@ class CodePathsStore:
       for line in code_paths_file:
         path_string, files_string = line.split()
         files = files_string.split(',')
-        paths.append({"path": path, "files": files})
+        paths.append({"path": path_string, "files": files})
 
     return paths
 

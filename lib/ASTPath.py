@@ -14,24 +14,24 @@ class ASTPath:
 
     self.paths = self.get_paths(code)
 
-
-  def get_paths(self, code):
+  @staticmethod
+  def get_paths(code):
     code_ast = ast.parse(code)
     
     paths = []
-    self.build_paths(code_ast, paths, "")
+    ASTPath.build_paths(code_ast, paths, "")
 
     return paths
 
-
-  def build_paths(self, node, paths, path_so_far):
+  @staticmethod
+  def build_paths(node, paths, path_so_far):
     for field in ast.iter_fields(node):
       if(field[0] != 'body'):
         path_so_far += field[0]
         path_so_far += type(field[1]).__name__
 
     for child_node in ast.iter_child_nodes(node):
-        self.build_paths(child_node, paths, path_so_far)
+      ASTPath.build_paths(child_node, paths, path_so_far)
 
     if path_so_far:
       paths.append(path_so_far)
