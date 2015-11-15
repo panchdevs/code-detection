@@ -21,13 +21,15 @@ class CodePathsStore:
     for root, dirs, files in walk(self.codebase_path):
       for filename in files:
         if filename.endswith(".py"):
-          filepaths = ASTPath(filename).paths
+          filename_path = path.join(root, filename)
+          filepaths = ASTPath(filename_path).paths
           for p in filepaths:
             ind = self.find_index_of_path(p, paths)
             if ind > -1:
-              paths[ind]["files"].append(path.join(root, filename))
+              if filename_path not in paths[ind]["files"]:
+                paths[ind]["files"].append(filename_path)
             else:
-              paths.append({"path": p, "files": [path.join(root, filename)]})
+              paths.append({"path": p, "files": [filename_path]})
 
 
     with open(self.code_paths_filepath, "w") as code_paths_file:
@@ -50,6 +52,3 @@ class CodePathsStore:
     if paths is None:
       paths = self.paths
     return next((ind for (ind, dic) in enumerate(paths) if dic["path"] == treepath), -1)
-
-
-CodePathsStore(".")
