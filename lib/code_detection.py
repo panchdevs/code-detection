@@ -121,7 +121,8 @@ class ASTPath:
     if path_so_far:
       paths.append(path_so_far)
 
-comparer = CodeComparer("/home/prashant/.config/sublime-text-3/Packages/CodeDetection/directory")
+codebase_path = vim.eval("a:directory")
+comparer = CodeComparer(codebase_path)
 code = string.join(vim.current.buffer, "\n")
 matches = comparer.compare(code)
 
