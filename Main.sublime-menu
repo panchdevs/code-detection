@@ -4,7 +4,7 @@
     "children": [
       {
         "command": "code_detection",
-        "caption": "Find clones"
+        "caption": "Find Clones"
       }
     ]
   }

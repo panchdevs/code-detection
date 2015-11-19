@@ -3,7 +3,7 @@ from .lib.CodeComparer import CodeComparer
 
 class CodeDetectionCommand(sublime_plugin.TextCommand):
   def run(self, edit):
-    self.view.window().show_input_panel("Search directory", ".", self.compare, None, None)
+    self.view.window().show_input_panel("Search directory", "", self.compare, None, None)
 
 
   def compare(self, codebase_path):
