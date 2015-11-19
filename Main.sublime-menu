@@ -1,9 +1,11 @@
 [
-{
+  {
     "id": "find",
-    "children":
-    [
-        { "command": "code_detection" }
+    "children": [
+      {
+        "command": "code_detection",
+        "caption": "Find clones"
+      }
     ]
-}
+  }
 ]
