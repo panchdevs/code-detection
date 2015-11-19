@@ -3,7 +3,7 @@ from .lib.CodeComparer import CodeComparer
 
 class CodeDetectionCommand(sublime_plugin.TextCommand):
   def run(self, edit):
-    self.view.window().show_input_panel("Search directory", ".", self.compare, None, None)
+    self.view.window().show_input_panel("Search directory", "", self.compare, None, None)
 
 
   def compare(self, codebase_path):
@@ -12,11 +12,15 @@ class CodeDetectionCommand(sublime_plugin.TextCommand):
 
     matches = comparer.compare(code_body)
     match_list = []
+    self.files = []
+
     for filename, match_percentage in matches.items():
       match_list.append(filename + " {0:.2f}".format(match_percentage))
-    self.view.window().show_quick_panel(match_list, self.something)
+      self.files.append(filename)
+
+    self.view.window().show_quick_panel(match_list, self.show_file)
 
 
-  def something(self, s):
-    # added temporarily
-    return s
+  def show_file(self, index):
+    if index > -1:
+      self.view.window().open_file(self.files[index])
