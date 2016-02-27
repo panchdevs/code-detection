@@ -12,13 +12,14 @@ class CodeComparer:
     paths = ASTPath.get_paths(code)
 
     matches = {}
+
     for treepath in paths:
 
-      match_files = None
-      for path_dic in self.code_paths_store.paths:
-        if path_dic["path"].endswith(treepath):
-          match_files = path_dic["files"]
-          break
+      match_files = []
+      for _filename, _suffixtree in self.code_paths_store.paths.items():
+        if _suffixtree.find_substring(treepath) > -1:
+          match_files.append(_filename) 
+        
 
       if match_files is not None:
         for filename in match_files:
