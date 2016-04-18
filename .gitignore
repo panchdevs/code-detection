@@ -1,0 +1,7 @@
+.pypirc
+*.swp
+tags
+*.pyc
+*.pyo
+*~
+__pycache__`
