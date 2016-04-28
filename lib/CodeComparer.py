@@ -5,20 +5,22 @@ from .CodePathsStore import CodePathsStore
 
 class CodeComparer:
 
-  def __init__(self, codebase_path):
-    self.code_paths_store = CodePathsStore(codebase_path)
+  def __init__(self, codebase_path, file_extension='.c'):
+    self.codebase_path = codebase_path
+    self.file_extension = file_extension
+    self.code_paths_store = CodePathsStore(codebase_path, self.file_extension)
 
   def compare(self, code):
-    paths = ASTPath.get_paths(code)
+    paths = ASTPath.get_paths(code, self.file_extension)
 
     matches = {}
+
     for treepath in paths:
 
-      match_files = None
-      for path_dic in self.code_paths_store.paths:
-        if path_dic["path"].endswith(treepath):
-          match_files = path_dic["files"]
-          break
+      match_files = []
+      for _filename, _suffixtree in self.code_paths_store.paths.items():
+        if _suffixtree.find_substring(treepath) > -1:
+          match_files.append(_filename)
 
       if match_files is not None:
         for filename in match_files:
